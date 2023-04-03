@@ -195,8 +195,8 @@
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
   }
   onMounted(() => {
-    // initCesium()
-    // loadPoint()
+    initCesium()
+    loadPoint()
     // handleListen()
   })
 </script>
