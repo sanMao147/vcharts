@@ -1,0 +1,33 @@
+{
+  "name": "webgis-demo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prettier:comment": "自动格式化当前目录下的所有文件",
+    "prettier": "prettier --write",
+    "d": "./deploy.sh",
+    "it": "./gitinit.sh"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.1.0",
+    "cesium": "^1.103.0",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.10.0",
+    "normalize.css": "^8.0.1",
+    "prettier": "^2.8.7",
+    "sass": "^1.60.0",
+    "vite-plugin-cesium": "^1.2.22",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "vite": "^4.2.0"
+  }
+}
