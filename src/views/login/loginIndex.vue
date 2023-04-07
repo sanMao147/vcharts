@@ -30,7 +30,7 @@
             :disabled="isLoginAble"
             class="loginBtn"
             type="primary"
-            @click.stop="login"
+            @click="login"
             >立即登录</a-button
           >
           <!--  <button  >

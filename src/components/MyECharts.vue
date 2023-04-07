@@ -65,9 +65,7 @@
       }
     }
   )
-  onMounted(() => {
-    console.log(props)
-  })
+  onMounted(() => {})
 </script>
 
 <style lang="scss" scoped>
