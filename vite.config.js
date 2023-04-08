@@ -1,9 +1,11 @@
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import { visualizer } from 'rollup-plugin-visualizer'
 import AutoImport from 'unplugin-auto-import/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
+import { cdn } from 'vite-plugin-cdn2'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,6 +16,41 @@ export default defineConfig({
     }),
     Components({
       resolvers: [AntDesignVueResolver()]
+    }),
+    visualizer({
+      emitFile: false,
+      file: 'stats.html', //分析图生成的文件名
+      open: true //如果存在本地服务端口，将在打包后自动展示
+    }),
+    cdn({
+      isProduction: true,
+      modules: [
+        {
+          name: 'vue',
+          global: 'Vue'
+        },
+        {
+          name: 'vue3-particles',
+          global: 'Particles',
+          spare: [
+            'https://cdn.jsdelivr.net/npm/vue3-particles@2.9.3/dist/vue3-particles.umd.min.js'
+          ]
+        },
+        {
+          name: 'tsparticles',
+          global: 'Tsparticles',
+          spare: [
+            'https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js'
+          ]
+        },
+        {
+          name: 'echarts',
+          global: 'Echarts',
+          spare: [
+            'https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js'
+          ]
+        }
+      ]
     })
   ],
   resolve: {
