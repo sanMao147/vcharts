@@ -27,15 +27,12 @@
             />
           </div>
           <a-button
-            :disabled="isLoginAble"
             class="loginBtn"
             type="primary"
             @click="login"
             >立即登录</a-button
           >
-          <!--  <button  >
-            立即登录
-          </button> -->
+
           <div class="tip">默认用户名：admin ，默认密码：123456</div>
         </div>
       </div>
@@ -75,9 +72,9 @@
     }
   }
 
-  const isLoginAble = computed(() => {
-    return !(data.userName && data.userPwd)
-  })
+  // const isLoginAble = computed(() => {
+  //   return !(data.userName && data.userPwd)
+  // })
 
   const particlesInit = async engine => {
     await loadFull(engine)

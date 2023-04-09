@@ -5,12 +5,14 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
-import { cdn } from 'vite-plugin-cdn2'
+import viteCDNPlugin from 'vite-plugin-cdn-import'
+import viteCompression from 'vite-plugin-compression'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    viteCompression(),
     AutoImport({
       resolvers: [AntDesignVueResolver()]
     }),
@@ -21,37 +23,47 @@ export default defineConfig({
       emitFile: false,
       file: 'stats.html', //分析图生成的文件名
       open: true //如果存在本地服务端口，将在打包后自动展示
-    }),
-    cdn({
-      isProduction: true,
-      modules: [
-        {
-          name: 'vue',
-          global: 'Vue'
-        },
-        {
-          name: 'vue3-particles',
-          global: 'Particles',
-          spare: [
-            'https://cdn.jsdelivr.net/npm/vue3-particles@2.9.3/dist/vue3-particles.umd.min.js'
-          ]
-        },
-        {
-          name: 'tsparticles',
-          global: 'Tsparticles',
-          spare: [
-            'https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js'
-          ]
-        },
-        {
-          name: 'echarts',
-          global: 'Echarts',
-          spare: [
-            'https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js'
-          ]
-        }
-      ]
     })
+    // viteCDNPlugin({
+    //   // 需要 CDN 加速的模块
+    //   modules: [
+    //     {
+    //       name: 'lodash',
+    //       var: '_',
+    //       path: `https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js`
+    //     }
+    //   ]
+    // })
+    // cdn({
+    //   isProduction: true,
+    //   modules: [
+    //     {
+    //       name: 'vue',
+    //       global: 'Vue'
+    //     },
+    //     {
+    //       name: 'vue3-particles',
+    //       global: 'particles',
+    //       spare: [
+    //         'https://cdn.jsdelivr.net/npm/vue3-particles@2.9.3/dist/vue3-particles.umd.min.js'
+    //       ]
+    //     },
+    //     {
+    //       name: 'tsparticles',
+    //       global: 'Tsparticles',
+    //       spare: [
+    //         'https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js'
+    //       ]
+    //     },
+    //     {
+    //       name: 'echarts',
+    //       global: 'Echarts',
+    //       spare: [
+    //         'https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js'
+    //       ]
+    //     }
+    //   ]
+    // })
   ],
   resolve: {
     alias: {

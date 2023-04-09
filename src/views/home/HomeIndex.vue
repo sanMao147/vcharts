@@ -43,7 +43,7 @@
   import { weaList } from '@/config/weather'
   import axios from 'axios'
   import dayjs from 'dayjs'
-  import { onMounted, reactive } from 'vue'
+  import { onMounted, reactive, onUnmounted, ref } from 'vue'
 
   const weatherData = reactive({
     tem: '',
@@ -94,6 +94,9 @@
   onMounted(() => {
     initTime()
     initWeather()
+  })
+  onUnmounted(() => {
+    // clearInterval(timer)
   })
 </script>
 
@@ -170,6 +173,7 @@
         display: flex;
         flex-wrap: nowrap;
         height: calc(100% - #{$h});
+        min-width: 120rem;
         .item {
           display: flex;
           flex-direction: column;
