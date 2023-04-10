@@ -17,35 +17,59 @@
       new Promise(resolve => {
         setTimeout(() => {
           resolve({
-            yData: ['巴西', '印度尼西亚', '美国', '印度', '中国', '全球'],
-            sData: [18203, 23489, 29034, 104970, 131744, 630230]
+            sData: [
+              { value: 30, name: '北京' },
+              { value: 28, name: '上海' },
+              { value: 26, name: '广州' },
+              { value: 24, name: '江苏' },
+              { value: 22, name: '浙江' },
+              { value: 20, name: '海南' },
+              { value: 18, name: '四川' },
+              { value: 16, name: '湖北' }
+            ]
           })
         }, 1000)
       })
 
     // 基本不变的 echarts 属性设置
     const baseOption = {
+      // title: {
+      //   text: 'Nightingale Chart',
+      //   subtext: 'Fake Data',
+      //   left: 'center'
+      // },
       tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'shadow'
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+      },
+      /*  legend: {
+        left: 'center',
+        top: 'bottom',
+        data: ['北京', '上海', '广州', '江苏', '浙江', '海南', '四川', '湖北']
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          mark: { show: true },
+          dataView: { show: true, readOnly: false },
+          restore: { show: true }
+          saveAsImage: { show: true }
         }
-      },
-      grid: {
-        left: '15%'
-        //   right: '4%',
-        //   bottom: '3%',
-        //   containLabel: true
-      },
-      yAxis: {
-        type: 'category',
-        data: []
-      },
-      xAxis: {
-        type: 'value',
-        boundaryGap: [0, 0.01]
-      },
-      series: []
+      }, */
+      series: [
+        {
+          name: '全国主要客户',
+          type: 'pie',
+          radius: [20, 140],
+          // center: ['75%', '50%'],
+          roseType: 'area',
+          itemStyle: {
+            borderRadius: 5
+          },
+
+          data: []
+        }
+      ]
     }
 
     const loadECharts = () => {
@@ -53,11 +77,7 @@
       fetchData()
         .then(res => {
           if (res) {
-            baseOption.yAxis.data = res.yData
-            baseOption.series.push({
-              data: res.sData,
-              type: 'bar'
-            })
+            baseOption.series[0].data = res.sData
           } else {
             //没有数据显示空态
             basefig.dataEmptyFlag = true

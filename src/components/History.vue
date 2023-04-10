@@ -9,7 +9,7 @@
     loading: false,
     dataEmptyFlag: false,
     options: '',
-    name: '发展历史'
+    name: '2023年月份注册会员数(千)'
   })
 
   const initCharts = () => {
@@ -17,35 +17,56 @@
       new Promise(resolve => {
         setTimeout(() => {
           resolve({
-            yData: ['巴西', '印度尼西亚', '美国', '印度', '中国', '全球'],
-            sData: [18203, 23489, 29034, 104970, 131744, 630230]
+            xData: ['1月', '2月', '3月', '4月', '5月', '6月', '7月']
           })
         }, 1000)
       })
+    const setLink = axisData => {
+      const data = axisData.map(function (item, i) {
+        return Math.round(Math.random() * 1000 * (i + 1))
+      })
+      const links = data.map(function (item, i) {
+        return {
+          source: i,
+          target: i + 1
+        }
+      })
+      links.pop()
+      return { links, data }
+    }
 
     // 基本不变的 echarts 属性设置
     const baseOption = {
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'shadow'
-        }
-      },
-      grid: {
-        left: '15%'
-        //   right: '4%',
-        //   bottom: '3%',
-        //   containLabel: true
-      },
-      yAxis: {
+      // title: {
+      //   text: 'Graph on Cartesian'
+      // },
+      tooltip: {},
+      xAxis: {
         type: 'category',
+        boundaryGap: false,
         data: []
       },
-      xAxis: {
-        type: 'value',
-        boundaryGap: [0, 0.01]
+      yAxis: {
+        type: 'value'
       },
-      series: []
+      series: [
+        {
+          type: 'graph',
+          layout: 'none',
+          coordinateSystem: 'cartesian2d',
+          symbolSize: 40,
+          label: {
+            show: true
+          },
+          edgeSymbol: ['circle', 'arrow'],
+          edgeSymbolSize: [4, 10],
+          data: [],
+          links: [],
+          lineStyle: {
+            color: '#2f4554'
+          }
+        }
+      ]
     }
 
     const loadECharts = () => {
@@ -53,11 +74,10 @@
       fetchData()
         .then(res => {
           if (res) {
-            baseOption.yAxis.data = res.yData
-            baseOption.series.push({
-              data: res.sData,
-              type: 'bar'
-            })
+            baseOption.xAxis.data = res.xData
+            const { links, data } = setLink(res.xData)
+            baseOption.series[0].links = links
+            baseOption.series[0].data = data
           } else {
             //没有数据显示空态
             basefig.dataEmptyFlag = true

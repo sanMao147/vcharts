@@ -3,6 +3,8 @@
 </template>
 
 <script setup>
+  import { wordArr } from '@/config/wordCloud'
+  import 'echarts-wordcloud'
   import { onMounted, reactive } from 'vue'
 
   const basefig = reactive({
@@ -17,35 +19,63 @@
       new Promise(resolve => {
         setTimeout(() => {
           resolve({
-            yData: ['巴西', '印度尼西亚', '美国', '印度', '中国', '全球'],
-            sData: [18203, 23489, 29034, 104970, 131744, 630230]
+            sData: wordArr
           })
         }, 1000)
       })
 
     // 基本不变的 echarts 属性设置
     const baseOption = {
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'shadow'
+      title: {
+        text: '',
+        x: 'center',
+        textStyle: {
+          fontSize: 23
         }
       },
-      grid: {
-        left: '15%'
-        //   right: '4%',
-        //   bottom: '3%',
-        //   containLabel: true
+      backgroundColor: '',
+      tooltip: {
+        show: false
       },
-      yAxis: {
-        type: 'category',
-        data: []
+      toolbox: {
+        feature: {}
       },
-      xAxis: {
-        type: 'value',
-        boundaryGap: [0, 0.01]
-      },
-      series: []
+      series: [
+        {
+          name: '',
+          type: 'wordCloud',
+          //size: ['9%', '99%'],
+          sizeRange: [6, 66],
+          //textRotation: [0, 45, 90, -45],
+          rotationRange: [-45, 90],
+          shape: 'circle',
+          textPadding: 0,
+          autoSize: {
+            enable: true,
+            minSize: 6
+          },
+          textStyle: {
+            fontFamily: '微软雅黑',
+            color: function () {
+              return (
+                'rgb(' +
+                [
+                  Math.round(Math.random() * 160),
+                  Math.round(Math.random() * 150),
+                  Math.round(Math.random() * 130)
+                ].join(',') +
+                ')'
+              )
+            },
+
+            emphasis: {
+              shadowBlur: 20,
+              shadowColor: '#333'
+            }
+          },
+          data: []
+        }
+      ]
     }
 
     const loadECharts = () => {
@@ -53,11 +83,7 @@
       fetchData()
         .then(res => {
           if (res) {
-            baseOption.yAxis.data = res.yData
-            baseOption.series.push({
-              data: res.sData,
-              type: 'bar'
-            })
+            baseOption.series[0].data = res.sData
           } else {
             //没有数据显示空态
             basefig.dataEmptyFlag = true
