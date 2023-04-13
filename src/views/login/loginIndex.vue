@@ -63,7 +63,9 @@
   const pJSDom = ref(null)
 
   const login = () => {
+    // console.log('登录');
     if (data.userName == 'admin' && data.userPwd == '123456') {
+      console.log('登录');
       router.replace({
         path: '/home'
       })
