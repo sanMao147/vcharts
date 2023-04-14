@@ -2,7 +2,7 @@
  * @Author: wohool
  * @Date: 2023-04-07 14:32:40
  * @LastEditors: wohool
- * @LastEditTime: 2023-04-08 14:31:01
+ * @LastEditTime: 2023-04-14 19:58:00
  * @FilePath: \vcharts\src\components\MyECharts.vue
  * @Description: 定制了图表加载态 loading; 图表数据为空时的属性 dataEmptyFlag。
     通过监听 options 的变化，更新绑定 myChart 的 option。
@@ -54,7 +54,6 @@
     options: null,
     dataEmptyFlag: false
   })
-
   const { myChart, canvasEl } = useCharts()
 
   watch(
@@ -65,6 +64,7 @@
       }
     }
   )
+
   onMounted(() => {})
 </script>
 

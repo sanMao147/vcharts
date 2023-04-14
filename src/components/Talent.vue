@@ -4,6 +4,7 @@
 
 <script setup>
   import { onMounted, reactive } from 'vue'
+  import { useCharts } from '@/utils/useEcharts.js'
 
   const basefig = reactive({
     loading: false,
@@ -13,6 +14,7 @@
   })
 
   const initCharts = () => {
+    const { myChart } = useCharts()
     const fetchData = () =>
       new Promise(resolve => {
         setTimeout(() => {
@@ -63,17 +65,17 @@
           length2: 0,
           maxSurfaceAngle: 80
         },
-        labelLayout: function (params) {
-          const isLeft = params.labelRect.x < myChart.getWidth() / 2
-          const points = params.labelLinePoints
-          // Update the end point.
-          points[2][0] = isLeft
-            ? params.labelRect.x
-            : params.labelRect.x + params.labelRect.width
-          return {
-            labelLinePoints: points
-          }
-        },
+        // labelLayout: function (params) {
+        //   const isLeft = params.labelRect.x < myChart.getWidth() / 2
+        //   const points = params.labelLinePoints
+        //   // Update the end point.
+        //   points[2][0] = isLeft
+        //     ? params.labelRect.x
+        //     : params.labelRect.x + params.labelRect.width
+        //   return {
+        //     labelLinePoints: points
+        //   }
+        // },
         data: data
       }
     }

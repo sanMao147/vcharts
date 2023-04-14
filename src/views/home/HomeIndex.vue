@@ -26,7 +26,9 @@
           <Talent />
           <Income />
         </div>
-        <div class="center item"></div>
+        <div class="center item">
+          <ChinaMap></ChinaMap>
+        </div>
         <div class="right item">
           <WordCloud />
           <Distribution />
@@ -38,8 +40,6 @@
 </template>
 
 <script setup>
-  // import '@/assets/js/china'
-  // import '@/assets/js/flexible'
   import { weaList } from '@/config/weather'
   import axios from 'axios'
   import dayjs from 'dayjs'

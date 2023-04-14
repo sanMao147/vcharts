@@ -1,13 +1,23 @@
 // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
 // 引入柱状图图表，图表后缀都为 Chart
-import { BarChart, PieChart, LineChart, GraphChart } from 'echarts/charts'
+import {
+  BarChart,
+  PieChart,
+  LineChart,
+  GraphChart,
+  MapChart
+} from 'echarts/charts'
 // 引入提示框，标题，直角坐标系，数据集，内置数据转换器组件，组件后缀都为 Component
 import {
   TitleComponent,
   TooltipComponent,
   GridComponent,
   LegendComponent,
-  ToolboxComponent
+  ToolboxComponent,
+  TransformComponent,
+  GeoComponent,
+  DatasetComponent,
+  VisualMapComponent
 } from 'echarts/components'
 import * as echarts from 'echarts/core'
 // 标签自动布局、全局过渡动画等特性
@@ -18,7 +28,12 @@ import { onBeforeUnmount, onMounted, shallowRef } from 'vue'
 
 // 注册必须的组件
 echarts.use([
+  TransformComponent,
+  GeoComponent,
+  DatasetComponent,
+  VisualMapComponent,
   PieChart,
+  MapChart,
   GraphChart,
   TitleComponent,
   TooltipComponent,
@@ -31,7 +46,7 @@ echarts.use([
   ToolboxComponent,
   CanvasRenderer
 ])
-export const useCharts = () => {
+const useCharts = () => {
   const canvasEl = shallowRef()
   const myChart = shallowRef()
   const resizeFn = () => {
@@ -53,3 +68,4 @@ export const useCharts = () => {
     canvasEl
   }
 }
+export { echarts, useCharts }

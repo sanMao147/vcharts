@@ -18,6 +18,12 @@
 </script>
 
 <style lang="scss" scoped>
+  .chart {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .panel {
     position: relative;
     height: 20rem;
@@ -44,12 +50,7 @@
       border-top: 2px solid #02a6b5;
       border-right: 2px solid #02a6b5;
     }
-    .chart {
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+
     .panel-footer {
       position: absolute;
       left: 0;
@@ -76,15 +77,14 @@
         border-right: 2px solid #02a6b5;
       }
     }
-
-    h2 {
-      height: 1.625rem;
-      line-height: 1.625rem;
-      text-align: center;
-      color: #fff;
-      font-size: 1.5rem;
-      font-weight: 400;
-      margin: 0;
-    }
+  }
+  h2 {
+    height: 1.625rem;
+    line-height: 1.625rem;
+    text-align: center;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0;
   }
 </style>
