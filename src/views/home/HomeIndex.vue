@@ -109,6 +109,7 @@
     width: 100%;
     height: 100%;
     background: #000;
+    min-height: 48rem;
     .wrap {
       height: 100%;
       background: url(../../assets/img/bg.jpg) no-repeat #000;
@@ -129,7 +130,7 @@
         }
         .weather {
           position: absolute;
-          left: 9.375rem;
+          left: 5vw;
           top: 2.5rem;
           font-size: 1.5rem;
           color: rgba(126, 240, 255, 0.7);
@@ -146,7 +147,7 @@
         }
         .showTime {
           position: absolute;
-          right: 10rem;
+          right: 5vw;
           top: 3.125rem;
           color: rgba(126, 240, 255, 0.7);
           display: flex;
@@ -173,7 +174,7 @@
         display: flex;
         flex-wrap: nowrap;
         height: calc(100% - #{$h});
-        min-width: 120rem;
+        min-width: 85.375rem;
         .item {
           display: flex;
           flex-direction: column;

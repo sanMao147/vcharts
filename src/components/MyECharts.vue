@@ -2,7 +2,7 @@
  * @Author: wohool
  * @Date: 2023-04-07 14:32:40
  * @LastEditors: wohool
- * @LastEditTime: 2023-04-14 19:58:00
+ * @LastEditTime: 2023-04-14 20:55:41
  * @FilePath: \vcharts\src\components\MyECharts.vue
  * @Description: 定制了图表加载态 loading; 图表数据为空时的属性 dataEmptyFlag。
     通过监听 options 的变化，更新绑定 myChart 的 option。
@@ -47,7 +47,7 @@
     containerStyle: {
       type: Object,
       default: () => {
-        return { height: '17.25rem', width: '31.25rem' }
+        return { height: '20vh', width: '25vw' }
       }
     },
     loading: false,

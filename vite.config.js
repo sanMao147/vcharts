@@ -7,7 +7,7 @@ import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import viteCDNPlugin from 'vite-plugin-cdn-import'
 import viteCompression from 'vite-plugin-compression'
-
+import postcssPresetEnv from 'postcss-preset-env'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -79,6 +79,11 @@ export default defineConfig({
     //   ]
     // })
   ],
+
+  postcss: {
+    plugins: [postcssPresetEnv()]
+  },
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src')
